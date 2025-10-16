@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Perguntas e Respostas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .pergunta {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        input {
+            padding: 10px;
+            width: 95%;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #22c55e;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #16a34a;
+            transform: scale(1.05);
+        }
+
+        .resultado {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .correto {
+            color: #22c55e;
+        }
+
+        .errado {
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>⚡ Quiz Conhecimentos Gerais</h1>
+    <p class="pergunta" id="pergunta">Clique em "Iniciar" para começar!</p>
+    <input type="text" id="resposta" placeholder="Digite sua resposta..." style="display:none;">
+    <button id="botao">Iniciar</button>
+    <p class="resultado" id="resultado"></p>
+</div>
+
+<script>
+    const perguntas = [
+        { q: "Qual a Capital do Brasil?", r: "Brasília" },
+        { q: "Qual a Montanha mais alta do Mundo?", r: "Monte Everest" },
+        { q: "Qual o maior Planeta do Sistema Solar?", r: "Júpiter" },
+        { q: "De quem é a frase: 'Penso, logo existo'?", r: "Descartes" },
+        { q: "De onde é a invenção do chuveiro elétrico?", r: "Brasil" },
+        { q: "Quanto tempo a luz do Sol demora para chegar à Terra?", r: "8 minutos" },
+        { q: "Qual destes países é transcontinental?", r: "Rússia" }
+    ];
+
+    let indice = 0;
+    const pergunta = document.getElementById("pergunta");
+    const resposta = document.getElementById("resposta");
+    const resultado = document.getElementById("resultado");
+    const botao = document.getElementById("botao");
+
+    botao.addEventListener("click", () => {
+        if (botao.innerText === "Iniciar" || botao.innerText === "Próxima") {
+            resposta.style.display = "block";
+            resultado.innerText = "";
+            pergunta.innerText = perguntas[indice].q;
+            botao.innerText = "Responder";
+        } else {
+            let resp = resposta.value.toLowerCase().trim();
+            if (resp === perguntas[indice].r) {
+                resultado.innerHTML = "✅ Correto!" ;
+                resultado.className = "resultado correto";
+            } else {
+                resultado.innerHTML = "❌ Errado! Resposta correta: <b>" + perguntas[indice].r + "</b>";
+                resultado.className = "resultado errado";
+            }
+            indice++;
+            resposta.value = "";
+            if (indice < perguntas.length) {
+                botao.innerText = "Próxima";
+            } else {
+                pergunta.innerText = "🎉 Fim do jogo! Parabéns!";
+                resposta.style.display = "none";
+                botao.style.display = "none";
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

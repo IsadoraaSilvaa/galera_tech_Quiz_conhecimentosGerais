@@ -1,2 +1,2 @@
-# galera_tech_Quiz_conhecimentosGerais
-galera_tech_Quiz_conhecimentosGerais
+# Quiz_conhecimentosGerais
+Quiz_conhecimentosGerais_galeraTech
