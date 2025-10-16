@@ -1,0 +1,2 @@
+# galera_tech_Quiz_conhecimentosGerais
+galera_tech_Quiz_conhecimentosGerais
